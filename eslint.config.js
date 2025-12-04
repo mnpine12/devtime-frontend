@@ -9,7 +9,20 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores([
+    'node_modules/',
+    'dist/',
+    'build/',
+    'scripts/',
+    'src/routeTree.gen.ts',
+    '*.env',
+    '*.env.local',
+    '*.env.development',
+    '*.env.production',
+    '*.d.ts',
+    'vite.config.ts',
+    'vite.config.js',
+  ]),
   {
     name: 'prettier',
     plugins: {
