@@ -1,12 +1,12 @@
 import js from '@eslint/js';
-import globals from 'globals';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import prettierConfig from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import';
+import prettier from 'eslint-plugin-prettier';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import prettier from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
-import importPlugin from "eslint-plugin-import";
-import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -22,16 +22,16 @@ export default defineConfig([
         'error',
         {
           groups: [
-            'builtin', 
-            'external', 
-            'internal', 
-            ['parent', 'sibling', 'index'], 
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
             'object',
-            'type', 
+            'type',
           ],
-          'newlines-between': 'always', 
+          'newlines-between': 'always',
           alphabetize: {
-            order: 'asc', 
+            order: 'asc',
             caseInsensitive: true,
           },
         },
