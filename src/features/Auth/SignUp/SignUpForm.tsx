@@ -1,5 +1,4 @@
-import Button from '@components/Button/Button';
-import { InputField, InputFieldWithButton } from '@components/InputField';
+import { Button, InputField, InputFieldWithButton } from '@Components/index';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 interface SignUpFormProps {

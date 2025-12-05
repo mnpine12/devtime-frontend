@@ -1,6 +1,6 @@
-import Logo from '@assets/images/Logo.svg';
-import SignUpForm from '@features/Auth/SignUp/SignUpForm';
+import SignUpForm from '@Features/Auth/SignUp/SignUpForm';
 import { FormEvent } from 'react';
+import logo from '@Assets/images/Logo.svg';
 import './index.css';
 
 const SignUp = () => {
@@ -12,7 +12,7 @@ const SignUp = () => {
     return (
         <div className="cont-body">
             <div className="logo-wrapper">
-                <img src={Logo} alt={Logo} />
+                <img src={logo} alt={logo} />
             </div>
             <div className="form-wrapper">
                 <SignUpForm onSubmit={handleSignUp} />
