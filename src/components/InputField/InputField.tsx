@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'react';
-import './index.css';
 
 interface InputFieldProps {
     id: string;
@@ -14,20 +13,19 @@ interface InputFieldProps {
 
 const InputField = ({ id, name, label, value, onChange, placeholder, disabled, helperText }: InputFieldProps) => {
     return (
-        <div>
-            <div className="inputField-wrapper">
-                <label>{label}</label>
-                <input
-                    type="text"
-                    id={id}
-                    name={name}
-                    value={value}
-                    onChange={onChange}
-                    placeholder={placeholder}
-                    disabled={disabled}
-                />
-            </div>
-            <span className="helperText">{helperText}</span>
+        <div className="flex flex-col gap-3">
+            <p className="body-sm m text-gray-600">{label}</p>
+            <input
+                type="text"
+                className="w-[324px] h-[44px] rounded-sm border-none bg-gray-50 input-field"
+                id={id}
+                name={name}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+                disabled={disabled}
+            />
+            <p className="max-w-full h-5 caption m text-secondary-positive">{helperText}</p>
         </div>
     );
 };

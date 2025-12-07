@@ -1,6 +1,5 @@
+import { Button } from '@Components/Button';
 import { ChangeEvent } from 'react';
-
-import './index.css';
 
 interface InputFieldWithButtonProps {
     id: string;
@@ -28,25 +27,28 @@ const InputFieldWithButton = ({
     helperText,
 }: InputFieldWithButtonProps) => {
     return (
-        <div>
-            <div className="inputField-wrapper">
-                <label>{label}</label>
-                <div className="input-with-button">
-                    <input
-                        type="text"
-                        id={id}
-                        name={name}
-                        value={value}
-                        onChange={onChange}
-                        placeholder={placeholder}
-                        disabled={disabled}
-                    />
-                    <button type="button" onClick={onButtonClick}>
-                        {buttonText}
-                    </button>
-                </div>
+        <div className="flex flex-col gap-3">
+            <p className="body-sm m text-gray-600">{label}</p>
+            <div className="flex flex-row h-[44px] gap-4">
+                <input
+                    type="text"
+                    className="input-field"
+                    id={id}
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    disabled={disabled}
+                />
+                <Button
+                    type="button"
+                    className="btn-primary-light sm btn-dup"
+                    text={buttonText}
+                    onClick={onButtonClick}
+                    disabled={value === ''}
+                />
             </div>
-            <span className="helperText">{helperText}</span>
+            <p className="max-w-full h-5 caption m text-secondary-positive">{helperText}</p>
         </div>
     );
 };
