@@ -51,9 +51,9 @@ const SignUpForm = ({ formData, onChange, onSubmit, onCheckDuplicate }: SignUpFo
                     onChange={(e) => onChange('confirmPassword', e.target.value)}
                 />
                 <div>
-                    <label className="label m gray-600">이용약관</label>
+                    <p className="body-sm m text-gray-600">이용약관</p>
                 </div>
-                <Button type="submit" className="btn-submit" text="회원가입" />
+                <Button type="submit" className="btn-primary lg" text="회원가입" />
             </form>
         </div>
     );
