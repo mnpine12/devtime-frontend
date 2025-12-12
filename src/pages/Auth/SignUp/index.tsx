@@ -62,7 +62,13 @@ const SignUp = () => {
                     return;
                 }
                 const emailRes = await checkEmail();
+                if (emailRes.available) {
+                    handleError(field, false);
+                } else {
+                    handleError(field, true);
+                }
                 handleResponseMsg(HelperTxt[field], 'emailChecked', emailRes);
+
                 break;
             case 'nickname':
                 if (!formData.nickname.trim()) {
@@ -72,6 +78,11 @@ const SignUp = () => {
                     return;
                 }
                 const nicknameRes = await checkNickname();
+                if (nicknameRes.available) {
+                    handleError(field, false);
+                } else {
+                    handleError(field, true);
+                }
                 handleResponseMsg(HelperTxt[field], 'nicknameChecked', nicknameRes);
                 break;
         }
@@ -83,6 +94,10 @@ const SignUp = () => {
         if (!signupState.emailChecked || !signupState.nicknameChecked) {
             alert('이메일과 닉네임의 중복을 체크해주세요.');
             return;
+        }
+
+        if (!error.password) {
+            alert('유효한 비밀번호가 아닙니다.');
         }
 
         if (formData.password !== formData.confirmPassword) {
