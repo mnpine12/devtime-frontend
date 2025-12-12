@@ -1,9 +1,5 @@
-interface ButtonProps {
+interface ButtonProps extends React.ComponentProps<'button'> {
     text: string;
-    type: 'button' | 'submit' | 'reset';
-    className: string;
-    onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
-    disabled?: boolean;
 }
 
 const Button = ({ text, type, className, onClick, disabled }: ButtonProps) => {

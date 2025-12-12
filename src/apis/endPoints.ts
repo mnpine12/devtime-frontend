@@ -1,5 +1,5 @@
-const AUTH = '/auth';
-const SIGNUP = '/signup';
+const AUTH = '/api/auth';
+const SIGNUP = '/api/signup';
 
 const endpoints = {
     AUTH: {

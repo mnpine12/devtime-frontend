@@ -224,10 +224,14 @@
         &.sm {
             width: 84px;
             height: 44px;
+            min-width: 84px;
+            min-height: 44px;
         }
         &.lg {
             width: 420px;
             height: 48px;
+            min-width: 420px;
+            min-height: 48px;
         }
         &:hover:not(:disabled) {
             background-color: var(--color-primary-light-hover);
