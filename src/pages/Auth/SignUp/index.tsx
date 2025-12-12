@@ -1,25 +1,20 @@
 import SignUpForm from '@Features/Auth/SignUp/SignUpForm';
 import { FormEvent, useState } from 'react';
 import logo from '@Assets/images/Logo.svg';
-
-export interface FormData {
-    userId: string;
-    userName: string;
-    password: string;
-    confirmPassword: string;
-    terms: boolean;
-}
+import { useQuery } from '@tanstack/react-query';
+import { signupQueryOptions } from '@Api/Signup/signup.queries';
+import { SignupItem } from '@Api/Signup/Signup.types';
 
 const SignUp = () => {
-    const [formData, setFormData] = useState<FormData>({
-        userId: '',
-        userName: '',
+    const [terms, setTerms] = useState<boolean>(false);
+    const [formData, setFormData] = useState<SignupItem>({
+        email: '',
+        nickname: '',
         password: '',
         confirmPassword: '',
-        terms: false,
     });
 
-    const handleChange = (field: keyof FormData, value: string | boolean) => {
+    const handleChange = (field: keyof SignupItem, value: string | boolean) => {
         setFormData((prev) => ({
             ...prev,
             [field]: value,
@@ -30,6 +25,8 @@ const SignUp = () => {
         // 중복체크 api 로직
     };
 
+    const handleCheckTerms = () => {};
+
     const handleSignUp = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 페이지 새로고침 방지
 
@@ -39,20 +36,22 @@ const SignUp = () => {
             return;
         }
 
-        if (!formData.terms) {
+        if (!terms) {
             alert('이용약관에 동의해주세요.');
             return;
         }
 
-        console.log('폼 제출 : ', e.target);
+        const { data } = useQuery(signupQueryOptions(formData));
+
+        console.log('폼 제출 : ', data);
     };
 
     return (
-        <div className="w-full h-full flex bg-primary">
-            <div className="w-1/2 h-full flex items-center justify-center">
-                <img className="max-w-full max-h-full object-contain" src={logo} alt={logo} />
+        <div className="bg-primary flex h-full w-full">
+            <div className="flex h-full w-1/2 items-center justify-center">
+                <img className="max-h-full max-w-full object-contain" src={logo} alt={logo} />
             </div>
-            <div className="w-1/2 h-full flex items-center justify-center bg-white">
+            <div className="flex h-full w-1/2 items-center justify-center bg-white">
                 <SignUpForm
                     formData={formData}
                     onChange={handleChange}
