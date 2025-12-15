@@ -1,33 +1,44 @@
-import { ChangeEvent } from 'react';
-import './index.css';
+import clsx from 'clsx';
 
-interface InputFieldProps {
-    id: string;
-    name: string;
+interface InputFieldProps extends React.ComponentProps<'input'> {
     label: string;
-    value: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    placeholder?: string;
-    disabled?: boolean;
     helperText?: string;
+    error?: boolean;
 }
 
-const InputField = ({ id, name, label, value, onChange, placeholder, disabled, helperText }: InputFieldProps) => {
+const InputField = ({
+    label,
+    id,
+    name,
+    type = 'text',
+    value,
+    onChange,
+    placeholder,
+    disabled,
+    helperText,
+    error,
+}: InputFieldProps) => {
     return (
-        <div>
-            <div className="inputField-wrapper">
-                <label>{label}</label>
-                <input
-                    type="text"
-                    id={id}
-                    name={name}
-                    value={value}
-                    onChange={onChange}
-                    placeholder={placeholder}
-                    disabled={disabled}
-                />
-            </div>
-            <span className="helperText">{helperText}</span>
+        <div className="flex w-full flex-col gap-3">
+            <p className="body-sm m text-gray-600">{label}</p>
+            <input
+                className="input-field h-[44px] w-full rounded-sm border-none bg-gray-50"
+                id={id}
+                name={name}
+                type={type}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+                disabled={disabled}
+            />
+            <p
+                className={clsx(
+                    error ? 'text-secondary-negative' : 'text-secondary-positive',
+                    'caption m h-5 max-w-full',
+                )}
+            >
+                {helperText}
+            </p>
         </div>
     );
 };
